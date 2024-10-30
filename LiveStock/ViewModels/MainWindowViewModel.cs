@@ -13,7 +13,7 @@ namespace LiveStock.ViewModels
     public partial class MainWindowViewModel : ViewModelBase
     {
         DispatcherTimer dispatcherTimer;
-        private string url = "https://qt.gtimg.cn/q=s_";
+        private string url = "https://qt.gtimg.cn/q=";
         private string prefix = "sh";
 
         public MainWindowViewModel() {
@@ -132,26 +132,26 @@ namespace LiveStock.ViewModels
             {
                 if (scode.Length < 6 && int.TryParse(scode, out _))
                 {
-                    prefix = "hk";
+                    prefix = "s_hk";
                 }
                 else
                 {
                     switch (scode.Substring(0, 1))
                     {
                         case "6":
-                            prefix = "sh";
+                            prefix = "s_sh";
                             break;
                         case "4":
                         case "8":
-                            prefix = "bj";
+                            prefix = "s_bj";
                             break;
                         case "0":
                         case "2":
                         case "3":
-                            prefix = "sz";
+                            prefix = "s_sz";
                             break;
                         default:
-                            prefix = "us";
+                            prefix = "s_us";
                             break;
                     }
                 }
