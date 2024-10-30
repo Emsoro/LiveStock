@@ -1,0 +1,93 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:LiveStock.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="250"
+        x:Class="LiveStock.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="LiveStock"
+		Width="300" Height="{Binding WindowHeight}"
+		Topmost="True"
+	    Background="Transparent" CanResize="False"
+		SystemDecorations="{Binding WindowSystemDecorations}"
+		ExtendClientAreaChromeHints ="{Binding ChromeHints}"
+		ExtendClientAreaToDecorationsHint="True"
+		FontFamily="Microsoft Yahei UI Light"
+		>
+	<Window.Resources>
+		<Color x:Key="FakeTransparentColor" >#01000000</Color>
+		<Color x:Key="TrueTransparentColor" >Transparent</Color>
+		<Color x:Key="QuartertransparentGrayColor">#3F727272</Color>
+		<Color x:Key="SemitransparentGrayColor">#7F727272</Color>
+		<Color x:Key="TriquartertransparentGrayColor" >#3F727272</Color>
+		<Color x:Key="FunctionalButtonBackgroundColor" >#7F000000</Color>
+		<Color x:Key="FunctionalButtonHoverColor" >#7F212121</Color>
+		<Color x:Key="FunctionalButtonActiveColor" >#7F515151</Color>
+		<SolidColorBrush x:Key="FakeTransparent" Color="{StaticResource FakeTransparentColor}"/>
+		<SolidColorBrush x:Key="TrueTransparent" Color="{StaticResource TrueTransparentColor}"/>
+		<SolidColorBrush x:Key="QuartertransparentGray" Color="{StaticResource QuartertransparentGrayColor}" />
+		<SolidColorBrush x:Key="SemitransparentGray" Color="{StaticResource SemitransparentGrayColor}" />
+		<SolidColorBrush x:Key="TriquartertransparentGray" Color="{StaticResource TriquartertransparentGrayColor}" />
+		<SolidColorBrush x:Key="FunctionalButtonBackground" Color="{StaticResource FunctionalButtonBackgroundColor}" />
+		<SolidColorBrush x:Key="FunctionalButtonHover" Color="{StaticResource FunctionalButtonHoverColor}" />
+		<SolidColorBrush x:Key="FunctionalButtonActive" Color="{StaticResource FunctionalButtonActiveColor}" />
+	</Window.Resources>
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+	<Border BorderThickness="0" BorderBrush="{StaticResource SemitransparentGray}">
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="30"/>
+				<ColumnDefinition Width="100"/>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
+			<Border Height="{Binding TitleHeight}"></Border>
+			<Button Grid.Row="1" Grid.Column="0"
+					Command="{Binding SetTitleDisplay}"
+				></Button>
+			<TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
+					   Text="{Binding StockPrice}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+			<StackPanel Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" IsVisible="{Binding DisplayState}"  Orientation="Horizontal">
+				<TextBox x:Name="tbStockCode"
+					
+					Text="{Binding StockCode}" VerticalContentAlignment="Center"
+					Width="200" Height="26" HorizontalAlignment="Left"
+			>
+					<TextBox.Styles>
+						<Style Selector="TextBox">
+							<Setter Property="Background" Value="Transparent"/>
+							<Setter Property="Foreground" Value="Gray"/>
+							<Setter Property="BorderBrush" Value="DarkGray"/>
+							<Setter Property="CornerRadius" Value="3"/>
+						</Style>
+					</TextBox.Styles>
+				</TextBox>
+				<Button
+
+						Command="{Binding SetStockCode}" VerticalContentAlignment="Center"
+						Width="45" Height="32" FontSize="12"
+			>
+					确定
+				</Button>
+			</StackPanel>
+
+		</Grid>
+
+	</Border>
+	
+	
+
+</Window>
