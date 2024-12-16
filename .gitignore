@@ -1,3 +1,7 @@
 /LiveStock/obj
 /LiveStock/bin
 /.vs
+/Plutuspot/obj
+/Plutuspot/bin
+/Plutuspot/*.user
+/LiveStock/*.user
