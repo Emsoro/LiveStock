@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Plutuspot.Core;
 using Plutuspot.Models;
 using System.Collections.ObjectModel;
@@ -9,23 +10,40 @@ namespace Plutuspot.ViewModels
     {
         public string Greeting { get; } = "Welcome to Avalonia!";
 
-        public ObservableCollection<string> Items { get; } = new ObservableCollection<string> {"热门股票" , "热门板块" };
+        [ObservableProperty]
+        private string msg = "";
+
+        public Stocks stocks = new Stocks();
+        public int index = 0;
+        public ObservableCollection<string> Items { get; } = new ObservableCollection<string> { "热门股票", "热门板块" };
         public ObservableCollection<Diff> StockItems { get; set; } = new ObservableCollection<Diff>();
 
-        public MainWindowViewModel() {  
+        public MainWindowViewModel()
+        {
+            Init();
+        }
+
+        [RelayCommand]
+        public void Loaded()
+        {
             Init();
         }
 
         public async void Init()
         {
-            Stocks stocks = new Stocks();
-            await stocks.GetAllStocksList();
-            await stocks.GetAllStocksPriceAndNames();
-            int index = 0;
-            stocks.StocksInfo.data.diff.ForEach(stock => {
-                index++;
-                stock.index = index;
-                StockItems.Add(stock); });
+
+            if (stocks.StocksList.data.Count == 0)
+            {
+                Msg += await stocks.GetAllStocksList();
+                Msg += await stocks.GetAllStocksPriceAndNames();
+                foreach (var stock in stocks.StocksInfo.data.diff)
+                {
+                    index++;
+                    stock.index = index;
+                    StockItems.Add(stock);
+                }
+            }
+
         }
 
     }

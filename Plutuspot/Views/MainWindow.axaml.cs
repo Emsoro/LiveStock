@@ -8,5 +8,7 @@ namespace Plutuspot.Views
         {
             InitializeComponent();
         }
+
+
     }
 }

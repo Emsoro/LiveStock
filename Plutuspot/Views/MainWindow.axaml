@@ -8,9 +8,6 @@
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/favicon.ico"
         Title="Plutuspot">
-	<Window.Resources>
-
-	</Window.Resources>
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
@@ -21,12 +18,15 @@
 			<ColumnDefinition Width="200"/>
 			<ColumnDefinition Width="*" />
 		</Grid.ColumnDefinitions>
-        <ListBox Grid.Column="0"  ItemsSource="{Binding Items}" Name="lbNativeMenuItems" />
+
+		<ListBox Grid.Column="0"  ItemsSource="{Binding Items}" Name="lbNativeMenuItems" />
+		<!--<Button Grid.Column="0" Content="点击我" Command="{Binding LoadedCommand}"/>
+		<TextBlock Grid.Column="0" Text="{Binding Msg}"  TextWrapping="Wrap"></TextBlock>-->
 		<ListBox  Grid.Column="1"  ItemsSource="{Binding StockItems}"
 				  Name="lbHotStockItems" >
 			<ListBox.ItemTemplate>
 				<DataTemplate>
-					<Border BorderBrush="Gray" BorderThickness="1"
+					<Border BorderBrush="LightGray" BorderThickness="1"
 							CornerRadius="4" Padding="4">
 						<StackPanel	Orientation="Horizontal" Spacing="10">
 							<TextBlock Text="{Binding index}"/>
@@ -35,12 +35,11 @@
 							<TextBlock Text="{Binding f2}"/>
 							<TextBlock Text="{Binding f3}%"/>
 						</StackPanel>
-						
+
 					</Border>
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox >
-		
 	</Grid>
 
     

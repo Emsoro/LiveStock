@@ -4,16 +4,21 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
-	<PublishAot Condition="'$(Configuration)' == 'Release'">true</PublishAot>
-	<PublishTrimmed>true</PublishTrimmed>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
-	  <ApplicationIcon>Assets\favicon.ico</ApplicationIcon>
+	  <PublishTrimmed>true</PublishTrimmed>
+	  <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+	  <ApplicationIcon>favicon.ico</ApplicationIcon>
+	  <PublishAot>True</PublishAot>
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Models\" />
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
+
+	<ItemGroup>
+		<TrimmerRootDescriptor Include="Roots.xml" />
+	</ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="11.2.1" />
@@ -26,7 +31,6 @@
       <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
     </PackageReference>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="RestSharp" Version="112.1.0" />
+    <PackageReference Include="RestSharp" Version="112.1.1-alpha.0.4" />
   </ItemGroup>
 </Project>
