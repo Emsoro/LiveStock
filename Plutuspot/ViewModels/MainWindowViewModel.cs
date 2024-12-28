@@ -42,6 +42,8 @@ namespace Plutuspot.ViewModels
                     stock.index = index;
                     StockItems.Add(stock);
                 }
+                Msg += await stocks.GetNews();
+                Msg += await stocks.GetHotTopics();
             }
 
         }

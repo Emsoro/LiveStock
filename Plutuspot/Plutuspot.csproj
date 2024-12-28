@@ -5,14 +5,13 @@
     <Nullable>enable</Nullable>
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-	  <PublishTrimmed>true</PublishTrimmed>
 	  <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
 	  <ApplicationIcon>favicon.ico</ApplicationIcon>
-	  <PublishAot>True</PublishAot>
+	  <PublishAot Condition="'$(Configuration)' == 'Release'">True</PublishAot>
+	  <PublishTrimmed>true</PublishTrimmed>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
 
